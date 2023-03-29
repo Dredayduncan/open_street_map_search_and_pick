@@ -355,7 +355,7 @@ class _OpenStreetMapSearchAndPickState
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
 
     if (widget.onLocationChanged != null){
-      widget.onLocationChanged(decodedResponse);
+      widget.onLocationChanged!(decodedResponse);
     }
 
     String displayName = decodedResponse['display_name'];
