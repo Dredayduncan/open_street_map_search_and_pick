@@ -19,7 +19,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final Color locationPinIconColor;
   final String buttonText;
   final String hintText;
-  final Function(List<Map<String, dynamic>>)? onLocationChanged;
+  final Function(List<Map<String, dynamic>>?)? onLocationChanged;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
