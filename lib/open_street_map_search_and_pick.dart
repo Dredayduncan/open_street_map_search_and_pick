@@ -19,6 +19,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
   final Color locationPinIconColor;
   final String buttonText;
   final String hintText;
+  final Function(List<Map<String, dynamic>>)? onLocationChanged;
 
   static Future<LatLng> nopFunction() {
     throw Exception("");
@@ -34,6 +35,7 @@ class OpenStreetMapSearchAndPick extends StatefulWidget {
     this.buttonTextColor = Colors.white,
     this.buttonText = 'Set Current Location',
     this.hintText = 'Search Location',
+    this.onLocationChanged
   }) : super(key: key);
 
   @override
@@ -351,6 +353,11 @@ class _OpenStreetMapSearchAndPickState
     var response = await client.post(Uri.parse(url));
     var decodedResponse =
         jsonDecode(utf8.decode(response.bodyBytes)) as Map<dynamic, dynamic>;
+
+    if (widget.onLocationChanged != null){
+      widget.onLocationChanged(decodedResponse);
+    }
+
     String displayName = decodedResponse['display_name'];
     return PickedData(center, displayName);
   }
